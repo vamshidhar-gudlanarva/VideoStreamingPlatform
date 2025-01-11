@@ -6,15 +6,15 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class Video {
-    private UUID id;
+    private long id;
     private String title;
     private String description;
     private LocalDateTime uploadDate;
     private Genre genre;
-    private Duration duration;
+    private String duration;
 
     private Video(Builder builder){
-        this.id = builder.id != null ? builder.id : java.util.UUID.randomUUID();
+        this.id = builder.id != 0 ? builder.id : UUID.randomUUID().getMostSignificantBits();
         this.title = builder.title;
         this.description = builder.description;
         this.uploadDate = builder.uploadDate  != null ? builder.uploadDate : LocalDateTime.now();
@@ -24,7 +24,7 @@ public class Video {
 
     }
 
-    public UUID getId() {
+    public long getId() {
         return id;
     }
 
@@ -44,7 +44,7 @@ public class Video {
         return genre;
     }
 
-    public Duration getDuration() {
+    public String getDuration() {
         return duration;
     }
 
@@ -76,14 +76,14 @@ public class Video {
 
 
     public static class Builder{
-        private UUID id;
+        private long id;
         private String title;
         private String description;
         private LocalDateTime uploadDate;
         private Genre genre;
-        private Duration duration;
+        private String duration;
 
-        public Builder setId(UUID id) {
+        public Builder setId(long id) {
             this.id = id;
             return this;
         }
@@ -108,7 +108,7 @@ public class Video {
             return this;
         }
 
-        public Builder setDuration(Duration duration) {
+        public Builder setDuration(String duration) {
             this.duration = duration;
             return this;
         }

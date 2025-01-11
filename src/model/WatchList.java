@@ -2,6 +2,7 @@ package model;
 
 import java.security.Timestamp;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 public class WatchList {
@@ -13,7 +14,7 @@ public class WatchList {
     private WatchList(Builder builder){
         this.id = builder.id  != 0 ? builder.id : System.currentTimeMillis();
         this.user = builder.user;
-        this.videos = builder.videos != null ?  builder.videos : List.of();
+        this.videos = builder.videos != null ?   new ArrayList<>(builder.videos) : new ArrayList<>();
         this.addedAt = builder.addedAt != null ? builder.addedAt : LocalDateTime.now();
     }
 
